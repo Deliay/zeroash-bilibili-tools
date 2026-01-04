@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Select, SelectItem } from "@heroui/select";
-import { Tooltip } from "@heroui/tooltip";
 import { addToast } from "@heroui/toast";
+import { Card, CardFooter } from "@heroui/card";
+import { Image } from "@heroui/image";
 import clsx from "clsx";
 
 import DefaultLayout from "@/layouts/default";
@@ -123,18 +124,29 @@ function VideoCard({
   }
 
   return (
-    <div className="overflow-hidden border h-full w-50 rounded-sm hover:[&>button]:visible">
-      <Button isIconOnly className="fixed invisible mr-0" onPress={removeVideo}>
-        X
+    <div className="overflow-hidden h-40 min-w-40 w-40 hover:[&>button]:visible">
+      <Button
+        isIconOnly
+        className="fixed invisible text-tiny text-white bg-black/20 z-50"
+        color="default"
+        size="sm"
+        variant="flat"
+        onPress={removeVideo}
+      >
+        x
       </Button>
-      <Tooltip>
-        <a className="h-full" href={video.url} rel="noreferrer" target="_blank">
-          <div className="overflow-hidden ">
-            <img alt={video.title} src={video.image} />
-            <span className="text-sm p-1">{video.title}</span>
-          </div>
-        </a>
-      </Tooltip>
+      <Card isFooterBlurred className="border-none min-h-40" radius="lg">
+        <Image
+          alt="video.title"
+          className="object-cover min-h-40"
+          src={video.image}
+        />
+        <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+          <a href={video.url} rel="noreferrer" target="_blank">
+            <span className="text-tiny text-black/75">{video.title}</span>
+          </a>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
@@ -151,13 +163,15 @@ function Rating({
   rate: VideoCategories;
 }) {
   return (
-    <div className="min-h-30 h-40 flex flex-row justify-start align-middle items-center border">
-      <div className={clsx("w-40 max-w-40 h-full text-black", color[title])}>
-        <div className="w-full border h-full flex justify-center align-middle items-center text-2xl">
+    <div className="border grid grid-flow-col justify-start align-middle items-center border">
+      <div
+        className={clsx("h-full max-w-40 min-w-40 text-black", color[title])}
+      >
+        <div className="w-full h-full flex justify-center align-middle items-center text-2xl">
           {title}
         </div>
       </div>
-      <div className="h-full w-full">
+      <div className="w-full flex flex-wrap grow min-h-20 gap-2 p-2">
         {Object.entries(videos).map(([bv, video]) => (
           <VideoCard
             key={bv}
