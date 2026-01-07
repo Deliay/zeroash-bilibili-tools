@@ -18,14 +18,18 @@ builder.Services.AddCors(cors =>
     cors.AddPolicy("trust-sites", (policy) => policy
         .WithOrigins("https://tools.ayelet.cn", "https://tools.zeroash.cn", "http://localhost:5173"));
 });
+builder.Services.AddResponseCaching();
+builder.Services.AddResponseCompression();
 
 var app = builder.Build();
+app.UseResponseCaching();
+app.UseResponseCompression();
+
 var cancellationToken = app.Lifetime.ApplicationStopping;
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
 app.UseCors("trust-sites");
 var crawler = app.Services.GetRequiredService<BiliVideoCrawler>();
 var httpClient = app.Services.GetRequiredService<HttpClient>();

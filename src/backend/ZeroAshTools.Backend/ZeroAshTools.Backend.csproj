@@ -10,6 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.3.8" />
         <PackageReference Include="Mikibot.Crawler" Version="1.0.5" />
     </ItemGroup>
 
