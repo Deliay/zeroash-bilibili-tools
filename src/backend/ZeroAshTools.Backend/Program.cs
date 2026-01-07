@@ -84,6 +84,7 @@ async ValueTask<T> BeginBvScopeAsync<T>(string bv, Func<ValueTask<T>> scope)
 
 async ValueTask<VideoParseResult> GetBvFromBilibiliAsync(string bv)
 {
+    app.Logger.LogInformation("Loading video information form bilibili without cache: {BV}", bv);
     var info = await crawler.GetVideoInfo(bv, null, cancellationToken);
     var data = await httpClient.GetByteArrayAsync($"{info.CoverUrl}@300w_168h_1c.jpg", cancellationToken);
     var dataUri = $"data:image/jpeg;base64,{Convert.ToBase64String(data)}";
