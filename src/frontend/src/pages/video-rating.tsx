@@ -164,11 +164,14 @@ function VideoCard({
           className="object-cover min-h-40"
           src={video.image}
         />
-        <CardFooter className="justify-between bg-black/75 before:bg-black/75 overflow-hidden py-1 absolute before:rounded-t-sm rounded-t-sm bottom-0 w-full z-10">
-          <a href={video.url} rel="noreferrer" target="_blank">
-            <span className="text-tiny text-white overflow-hidden text-ellipsis whitespace-nowrap">
-              {video.title}
-            </span>
+        <CardFooter className="justify-between bg-black/75 before:bg-black/75 overflow-hidden py-1 absolute before:rounded-t-sm rounded-t-sm bottom-0 w-full z-10 h-10">
+          <a
+            className="text-white max-w-60 w-full overflow-hidden text-ellipsis whitespace-nowrap"
+            href={video.url}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <span className="text-sm text-ellipsis">{video.title}</span>
           </a>
         </CardFooter>
       </Card>
@@ -231,7 +234,7 @@ function tryGetBv(str: string) {
 export default function VideoRating() {
   const { setPageName } = useTitle();
 
-  setPageName("视频从夯到拉");
+  useEffect(() => setPageName("视频从夯到拉"));
 
   const [rate, setRate] = useState<VideoCategories>(null!);
   const [bv, setBv] = useState<string>("");
