@@ -18,7 +18,7 @@ export default function RateItemCard({ item }: { item: RateItem }) {
   return (
     <div
       ref={setNodeRef}
-      className="overflow-hidden h-40 min-w-60 w-60 hover:[&>button]:visible"
+      className="overflow-hidden min-w-60 w-60 hover:[&>button]:visible"
       style={{
         transform: CSS.Translate.toString(transform),
       }}

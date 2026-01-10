@@ -78,21 +78,23 @@ export default function BilibiliVideoProvider() {
     }
     const info = await getVideoInfo(bv);
 
-    addItem(info);
+    addItem(info, category);
     setLoading(false);
   }
 
   return (
-    <div className="flex justify-center items-start align-baseline w-1/2 gap-2">
+    <div className="flex justify-start items-center align-middle w-full gap-2">
       <Input
         className="w-60 min-w-32"
-        placeholder="输入BV号"
+        label="BV号"
+        placeholder="输入BV号或粘贴视频地址"
         value={bv}
         onValueChange={handleBvChange}
       />
       <Select
         className="max-w-32 min-w-24"
         items={Object.keys(rates).map((key) => ({ key, label: key }))}
+        label="分类"
         selectedKeys={new Set([category])}
         selectionMode="single"
         onSelectionChange={([item]) =>

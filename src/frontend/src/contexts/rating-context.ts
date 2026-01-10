@@ -48,6 +48,7 @@ export const useEmptyRatingContext = () => {
       for (const key in curr) {
         curr[key] = curr[key].filter((i) => i.id != item.id);
       }
+      set(curr);
     });
   }
 
